@@ -1,0 +1,43 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Lambda function ListBucketsCommand.
+Parameters:
+  s3BucketParam:
+    Type: String
+  s3BucketKeyParam:
+    Type: String
+
+Resources:
+  MyLambdaFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      Runtime: nodejs18.x
+      Role: arn:aws:iam::123456789012:role/lambda-role
+      Handler: index.pstnHandler
+      Code:
+        S3Bucket : !Ref s3BucketParam
+        S3Key : !Ref s3BucketKeyParam
+      Description: List Amazon S3 buckets in us-east-1.
+      TracingConfig:
+        Mode: Active
+  MyLambdaFunctionRole: 
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: MyLambdaFunctionRole
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: MyLambdaFunctionPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource: '*'
+  
