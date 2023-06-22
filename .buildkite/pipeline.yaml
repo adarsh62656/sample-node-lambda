@@ -1,5 +1,10 @@
 steps:
-  - name: ":python:"
+  - name: "init"
+    commands: 
+      - "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash"
+      - ". ~/.nvm/nvm.sh"
+      - "nvm install 16"
+  - name: "installation"
     command: "npm install"
   - name: "install dependancies"
     command: "npm install -D @types/aws-lambda esbuild"
