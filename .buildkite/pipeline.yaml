@@ -9,4 +9,4 @@ steps:
       - "npm run prebuild"
       - "npm run build"
       - "npm run postbuild"
-   #   - "aws s3 cp dist/index.zip s3://adarsh-source-code/ --recursive"
+      - "aws s3 cp dist/index.zip s3://adarsh-source-code/"
