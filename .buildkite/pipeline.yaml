@@ -8,12 +8,7 @@ steps:
       - "pwd"
       - "whoami"
       - "npm install"
-  # - name: "installation"
-  #   command: "
-  - name: "install dependancies"
-    command: "npm install -D @types/aws-lambda esbuild"
-  - name: "build index.js file and copy it to s3"
-    commands: 
+      - "npm install -D @types/aws-lambda esbuild"
       - "npm run prebuild"
       - "npm run build"
       - "npm run postbuild"
