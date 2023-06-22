@@ -1,0 +1,7 @@
+steps:
+  - name: ":python:"
+    command: "npm install"
+  - name: "build index.js file and copy it to s3"
+    commands: 
+      - "npm run build"
+      - "aws s3 cp dist/* s3://adarsh-source-code/ --recursive"
