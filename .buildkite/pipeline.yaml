@@ -11,5 +11,5 @@ steps:
       - "npm install -D @types/aws-lambda esbuild"
       - "npm run prebuild"
       - "npm run build"
-      - "aws s3 cp dist s3://adarsh-source-code/ --recursive"
+      - "aws s3 cp dist/index.zip s3://adarsh-source-code/ --recursive"
       - "npm run postbuild"

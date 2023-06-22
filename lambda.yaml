@@ -3,15 +3,17 @@ Description: Lambda function ListBucketsCommand.
 Parameters:
   s3BucketParam:
     Type: String
+    Default: adarsh-source-code
   s3BucketKeyParam:
     Type: String
-
+    Default: index.zip
+    
 Resources:
   MyLambdaFunction:
     Type: AWS::Lambda::Function
     Properties:
       Runtime: nodejs18.x
-      Role: arn:aws:iam::123456789012:role/lambda-role
+      Role: !GetAtt MyLambdaFunctionRole.Arn
       Handler: index.pstnHandler
       Code:
         S3Bucket : !Ref s3BucketParam
@@ -39,5 +41,6 @@ Resources:
                 Action:
                   - logs:CreateLogStream
                   - logs:PutLogEvents
+                  - s3:GetObject
                 Resource: '*'
   
