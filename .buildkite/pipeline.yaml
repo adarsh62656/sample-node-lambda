@@ -1,7 +1,11 @@
 steps:
   - name: ":python:"
     command: "npm install"
+  - name: "install dependancies"
+    command: "npm install -D @types/aws-lambda esbuild"
   - name: "build index.js file and copy it to s3"
     commands: 
+      - "npm run prebuild"
       - "npm run build"
+      - "npm run postbuild"
       - "aws s3 cp dist/* s3://adarsh-source-code/ --recursive"
