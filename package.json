@@ -14,7 +14,7 @@
     "test": "npm run compile && npm run unit",
     "prebuild": "rm -rf dist",
     "build": "esbuild src/api/pstn.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=dist/index.js",
-    "postbuild": "cd dist && zip -r index.zip index.js*"
+    "postbuild": "cd dist && zip -r index.zip index.js"
   },
   "dependencies": {
     "axios": "^1.4.0",
